@@ -8,15 +8,11 @@
 
 * 用户登录界面
 
-<img src="F:\Typora\Pictures\image-20210115143653561.png" alt="image-20210115143653561" style="zoom: 50%;" />
-
 考虑到张老师提到的安全规则"网页上登录必须加入验证码"，将用户页面引入验证码，暂时没实现老师提到的”3次登录失败后，加入验证码“，验证码的实现具体细节在下面的源码介绍；另外对用户的手机号码进行正则化表达式的校验；
 
 
 
 * 秒杀商品列表
-
-<img src="F:\Typora\Pictures\image-20210115145009769.png" alt="image-20210115145009769" style="zoom: 50%;" />
 
 放置四个秒杀商品链接，具体信息可以进入“详情”页、“详情(静态化)”页参与秒杀，详情(静态化)是对前后端分离的一种尝试，将页面直接缓存到客户端。
 
@@ -24,15 +20,11 @@
 
 * 秒杀时间未到
 
-<img src="F:\Typora\Pictures\image-20210115145719385.png" alt="image-20210115145719385" style="zoom:50%;" />
-
 商品设定的时间未到，立即秒杀按钮是无法点击的，这样可以阻止部分用户的疯狂服务器请求。
 
 
 
 * 秒杀开始
-
-<img src="F:\Typora\Pictures\image-20210115151717591.png" alt="image-20210115151717591" style="zoom: 50%;" />
 
 秒杀开始，加入数学公式验证码，这样可以避免用户通过明文地址将秒杀请求不停地发送到服务端，同时也有效的防止机器人等手段参与秒杀。
 
@@ -40,27 +32,17 @@
 
 * 秒杀结果
 
-<img src="F:\Typora\Pictures\image-20210115152239846.png" alt="image-20210115152239846" style="zoom:50%;" />
-
-<img src="F:\Typora\Pictures\image-20210115152350721.png" alt="image-20210115152350721" style="zoom:50%;" />
-
-<img src="F:\Typora\Pictures\image-20210115152412095.png" alt="image-20210115152412095" style="zoom:50%;" />
-
 完成秒杀请求，进入商品支付界面。
 
 
 
 * 避免重复秒杀
 
-<img src="F:\Typora\Pictures\image-20210115150025487.png" alt="image-20210115150025487" style="zoom:50%;" />
-
 同一个用户秒杀到了两个一样的商品，这种情形也是超卖，应当避免，为此我们将利用数据库本身自带的特性进行防止。
 
 
 
 * 秒杀活动结束
-
-<img src="F:\Typora\Pictures\image-20210115152455758.png" alt="image-20210115152455758" style="zoom:50%;" />
 
 秒杀活动结束，不再提供秒杀接口。
 
@@ -70,8 +52,6 @@
 
 本项目模拟高并发的场景，完成商品的秒杀，同时针对相关的安全规则进行项目优化
 
-<img src="F:\Typora\Pictures\image-20210115155851213.png" alt="image-20210115155851213" style="zoom:50%;" />
-
 
 
 # 快速启动
@@ -80,25 +60,9 @@
 
 数据设计如下：
 
-<img src="F:\Typora\Pictures\image-20210115164325879.png" alt="image-20210115164325879" style="zoom:50%;" />
-
 * user、goods 、order_info这三张表是正常系统存在的数据表
 
 * seckill_user、seckill_goods、seckill_order三张表是针对秒杀进行设计的
-
-具体的表信息为：
-
-`seckill_user表`
-
-<img src="F:\Typora\Pictures\image-20210115164624203.png" alt="image-20210115164624203" style="zoom:67%;" />
-
-`seckill_goods表`
-
-<img src="F:\Typora\Pictures\image-20210115164717724.png" alt="image-20210115164717724" style="zoom:67%;" />
-
-`seckill_order表`
-
-<img src="F:\Typora\Pictures\image-20210115164749228.png" alt="image-20210115164749228" style="zoom:67%;" />
 
 
 
@@ -107,7 +71,7 @@
 - [ ] 1、克隆仓库到本地
 
 ```cmd
-git clone https://github.com/charliehxl/seckill.git
+https://github.com/npnv/seckill
 ```
 
 2、 导入IDEA
@@ -520,8 +484,6 @@ function getMiaoshaResult(goodsId) {
 
 RabbitMQ的整体架构
 
-<img src="F:\Typora\Pictures\image-20210119164122852.png" alt="image-20210119164122852" style="zoom:50%;" />
-
 RabbitMQ的组成：
 
 - Broker：消息队列服务进程。此进程包括两个部分：Exchange和Queue。
@@ -531,8 +493,6 @@ RabbitMQ的组成：
 - Consumer：消息消费者。消费队列中存储的消息。
 
 协同工作大概的流程为：
-
-<img src="F:\Typora\Pictures\image-20210119164428218.png" alt="image-20210119164428218" style="zoom:50%;" />
 
 在项目的具体应用：
 
